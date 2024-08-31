@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Bot Search</title>
-    <script>
-        async function searchBot() {
-            const username = document.getElementById('username').value;
-            if (!username) {
-                alert('Per favore inserisci un username');
-                return;
-            }
-
-            try {
-                // Modifica l'URL per puntare al tuo server backend
-                const response = await fetch(`https://your-backend-url/search_bot?username=${encodeURIComponent(username)}`);
-                const result = await response.json();
-
-                if (result.exists) {
-                    document.getElementById('result').innerText = `Bot trovato: ${result.data.title}`;
-                } else {
-                    document.getElementById('result').innerText = 'Bot non trovato';
-                }
-            } catch (error) {
-                console.error('Errore:', error);
-                document.getElementById('result').innerText = 'Si è verificato un errore';
-            }
-        }
-    </script>
+    <title>Mini Apps Center</title>
+    <link rel="stylesheet" href="CSS/STYLE.CSS">
 </head>
 <body>
-    <input type="text" id="username" placeholder="Inserisci l'username del bot (senza @)">
-    <button onclick="searchBot()">Cerca</button>
-    <div id="result"></div>
+    <div id="app">
+        <!-- Schermata principale -->
+        <div id="homepage" class="screen active">
+            <header>
+                <h1>Mini Apps Center</h1>
+                <button id="searchBtn">🔍</button>
+            </header>
+            <div class="app-grid">
+                <!-- Slot per le app -->
+                <div class="app-slot" data-url="https://t.me/hamster_kombat_bot">
+                    <img src="path-to-image/hamster_kombat.png" alt="Hamster Kombat">
+                </div>
+                <!-- Aggiungere altri slot simili -->
+            </div>
+        </div>
+
+        <!-- Schermata di ricerca -->
+        <div id="search" class="screen">
+            <header>
+                <button id="backBtn">←</button>
+                <input type="text" id="searchInput" placeholder="Start typing app name...">
+            </header>
+            <div id="searchResults">
+                <!-- Risultati della ricerca -->
+                <!-- Popolare dinamicamente via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/MAIN.JS"></script>
 </body>
 </html>
-
