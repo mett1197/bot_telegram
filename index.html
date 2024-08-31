@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Apps Center</title>
+    <link rel="stylesheet" href="CSS/STYLE.CSS">
+</head>
+<body>
+    <div id="app">
+        <!-- Schermata principale -->
+        <div id="homepage" class="screen active">
+            <header>
+                <h1>Mini Apps Center</h1>
+                <button id="searchBtn">🔍</button>
+            </header>
+            <div class="app-grid">
+                <!-- Slot per le app -->
+                <div class="app-slot" data-url="https://t.me/hamster_kombat_bot">
+                    <img src="path-to-image/hamster_kombat.png" alt="Hamster Kombat">
+                </div>
+                <!-- Aggiungere altri slot simili -->
+            </div>
+        </div>
+
+        <!-- Schermata di ricerca -->
+        <div id="search" class="screen">
+            <header>
+                <button id="backBtn">←</button>
+                <input type="text" id="searchInput" placeholder="Start typing app name...">
+            </header>
+            <div id="searchResults">
+                <!-- Risultati della ricerca -->
+                <!-- Popolare dinamicamente via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/MAIN.JS"></script>
+</body>
+</html>
