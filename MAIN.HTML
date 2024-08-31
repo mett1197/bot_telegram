@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoBeasts Interface</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            padding: 50px; 
-            background-color: #f4f4f4; 
+    <title>Telegram Bot Search</title>
+    <script>
+        async function searchBot() {
+            const username = document.getElementById('username').value;
+            if (!username) {
+                alert('Per favore inserisci un username');
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage?chat_id=YOUR_CHAT_ID&text=/search ${encodeURIComponent(username)}`);
+                const result = await response.json();
+
+                // Mostra i risultati
+                document.getElementById('result').innerText = `Risultato della ricerca: ${result.message.text}`;
+            } catch (error) {
+                console.error('Errore:', error);
+                document.getElementById('result').innerText = 'Si è verificato un errore';
+            }
         }
-        h1 { color: #333; }
-    </style>
+    </script>
 </head>
 <body>
-    <h1>Benvenuto in CryptoBeasts!</h1>
-    <p>Questa è un'interfaccia di debug.</p>
+    <input type="text" id="username" placeholder="Inserisci l'username del bot (senza @)">
+    <button onclick="searchBot()">Cerca</button>
+    <div id="result"></div>
 </body>
 </html>
