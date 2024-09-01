@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Apps Center</title>
-    <link rel="stylesheet" href="CSS/STYLE.CSS">
+    <title>CryptoBeasts</title>
 </head>
 <body>
-    <div id="app">
-        <!-- Schermata principale -->
-        <div id="homepage" class="screen active">
-            <header>
-                <h1>Mini Apps Center</h1>
-                <button id="searchBtn">🔍</button>
-            </header>
-            <div class="app-grid">
-                <!-- Slot per le app -->
-                <div class="app-slot" data-url="https://t.me/hamster_kombat_bot">
-                    <img src="path-to-image/hamster_kombat.png" alt="Hamster Kombat">
-                </div>
-                <!-- Aggiungere altri slot simili -->
-            </div>
-        </div>
+    <h1>Benvenuto in CryptoBeasts!</h1>
+    <input type="text" id="searchBar" placeholder="Inserisci username Telegram" />
+    <button id="searchButton">Cerca</button>
+    <div id="result"></div>
 
-        <!-- Schermata di ricerca -->
-        <div id="search" class="screen">
-            <header>
-                <button id="backBtn">←</button>
-                <input type="text" id="searchInput" placeholder="Start typing app name...">
-            </header>
-            <div id="searchResults">
-                <!-- Risultati della ricerca -->
-                <!-- Popolare dinamicamente via JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <script src="JS/MAIN.JS"></script>
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const username = document.getElementById('searchBar').value;
+            if (username) {
+                fetch(`http://localhost:5000/search_username?username=${username}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('result').innerHTML = `
+                                <p>Bot trovato:</p>
+                                <p>Nome: ${data.name}</p>
+                                <p>Username: ${data.username}</p>
+                            `;
+                        } else {
+                            document.getElementById('result').innerHTML = `<p>${data.error}</p>`;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Errore nella richiesta:', error);
+                        document.getElementById('result').innerHTML = `<p>Errore nella richiesta.</p>`;
+                    });
+            } else {
+                document.getElementById('result').innerHTML = `<p>Per favore, inserisci uno username.</p>`;
+            }
+        });
+    </script>
 </body>
 </html>
