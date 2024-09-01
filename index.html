@@ -15,7 +15,7 @@
         document.getElementById('searchButton').addEventListener('click', function() {
             const username = document.getElementById('searchBar').value;
             if (username) {
-                fetch(`https://3550-2-36-67-100.ngrok-free.app/search_username?username=${username}`)
+                fetch('https://3550-2-36-67-100.ngrok-free.app/search_username?username=${username}')
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
